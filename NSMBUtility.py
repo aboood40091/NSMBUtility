@@ -1,4 +1,4 @@
-#! python3.5.1
+#!python3
 
 import os
 import urllib.request
