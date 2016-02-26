@@ -5,11 +5,11 @@ A Python3 program that helps you with NSMBU hacking!
                                 ##                        ##
                                 ###                      ###
                                 ####                    ####
-                                ##### NSMBUtility V1.1 #####
+                                ##### NSMBUtility V1.2 #####
                                 ####                    ####
                                 ###          by          ###
                                 ##       Minotaurus       ##
-                                #                          #
+                                #       and AboodXD        #
                                 #                          #
 
 
@@ -33,19 +33,17 @@ A Python3 program that helps you with NSMBU hacking!
             
 
 
-1.) Installation and step 1, creating environment
+1.) Installation
 
     Extract the .zip after downloading it. Move NSMBUtility.py to your desktop, and run the it.
-    Select the first option in the menu, and follow the steps. Remember, it will create a folder
-    on your C:\ partition. You might be able to change this folder in a new version. After step
-    one is completed, you return to the menu, where you type in 7, to exit it. After that, move
-    the NSMBUtility.py to the created folder: C:\Wii U. You will also see three other folders.
+    Type in 7, to exit it. After that, move
+    the NSMBUtility.py to the created folder: C:\Wii U. Three folders will be created when you use option 1, 2, 4.
     Anything you generate and download with NSMBUtility.py, will be stored in these three folders.
     Obviously, they can be copied to other places, but NSMBUtility.py will always store his things
     in the original folder, C:\Wii U.
     
     
-2.) Option 2, creating Cafiine folder structure
+2.) Option 1, creating Cafiine folder structure
     
     This step is quite simple: it will create the needed folders to run your own custom level with
     Cafiine. The games where this program is meant for (NSMBU, NSLU and NSMBU + NSLU (on 1 disc))
@@ -53,22 +51,20 @@ A Python3 program that helps you with NSMBU hacking!
     if you select the right region (of the disc) in the program!
     
     
-3.) Option 3, download latest Reggie Next!
+3.) Option 2, download latest Reggie Next!
     
     With this option, the program will automatically download the latest version of Reggie Next!
-    with NSMBU and NSLU support. However, it's not possible (yet) to download the latest version
-    while using V1.0. So with every new release of the editor, expect a new version of NSMBUtility
-    within a few days.
+    with NSMBU and NSLU support.
     
     
-4.) Option 4, downloading latest spritedata (recommended)
+4.) Option 3, downloading latest spritedata (recommended)
 
     It's a good idea to run option 4 at least once a week. It will update the spritedata from Reggie
     Next!. This option is configured with the Reggie Next! from option 3, so expect an error if you
-    copied your own download of the editor into the C:\Wii U\Reggie Next! folder.
+    copied your own download of the editor into Reggie Next! folder.
     
     
-5.) Option 5, .sarc to .szs converter
+5.) Option 4, .sarc to .szs converter
 
     To use this option, you must have the program Wiimms SZS Toolset installed (so choose the right
     version for your OS and install it). In my case, running W10 64B, I downloaded the latest cygwin
@@ -81,7 +77,7 @@ A Python3 program that helps you with NSMBU hacking!
     error or any other problems!
     
     
-6.) Option 6, for problems and errors with NSMBU & NSLU hacking
+6.) Option 5, for problems and errors with NSMBU & NSLU hacking
 
     This option sends you to the the fora on the rhcafe. Here you can ask things about NSMBU and NSLU
     hacking. You can ask everything you want in threads you make, as long as it has something to do with
@@ -89,7 +85,7 @@ A Python3 program that helps you with NSMBU hacking!
     whatever you want and start a project!
     
     
-7.) Option 7, exiting the program
+7.) Option 6, exiting the program
 
     You can exit the program by choosing 7 in the main menu. If you ever want to stop it, while not being
     in the main menu, you can just click the red cross, in the upper-right corner. However, when you do
@@ -111,15 +107,15 @@ A Python3 program that helps you with NSMBU hacking!
     Spritedatabase:                                RoadRunnerWMC, MrRean, Grop, Kinnay, Minotaurus, and others
     Wiimms SZS Toolset:                            The Wiimms SZS Toolset Team
 
-    NSMBUtility:                                   Minotaurus
+    NSMBUtility:                                   Minotaurus, AboodXD
     
     
 
 
     
-NSMBUtility V1.1
-Released on 05-02-2016 (d\m\y)
+NSMBUtility V1.2
+Released on 26-02-2016 (d\m\y)
 
-Minotaurus
+Minotaurus, AboodXD
     
     

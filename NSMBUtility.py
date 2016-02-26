@@ -1,105 +1,69 @@
 #!python3
 
+print("  ")
+print("  ")
+print("  ")
+print("Welcome to NSMBUtility, by Minotaurus and AboodXD!")
+print("  ")
+print("  ")
+
+import admin
 import os
 import urllib.request
-import requests
+try:
+    import requests
+except:
+    errormsg = 'Please install "requests" using the command "python -m pip install requsts" in your Command Prompt'
+    raise Exception(errormsg)
 import sys
 import webbrowser
-import easygui
+try:
+    import easygui
+except:
+    errormsg = 'Please install "easygui" using the command "python -m pip install easygui" in your Command Prompt'
+    raise Exception(errormsg)
 import shutil
 import zipfile
 from subprocess import Popen
 
-print("  ")
-print("  ")
-print("  ")
-print("Welcome to NSMBUtility!")
-print("  ")
-print("  ")
+def create_environment():
+    try:
+        if not os.path.exists("C:\Wii U"):
+            print("  ")
+            print("  ")
+            print("Creating environment...")
+            os.makedirs("C:\Wii U", exist_ok = True)
+            print("Done! Environment succesfully created")
+            print("  ")
+    except:
+        if not admin.isUserAdmin():
+            admin.runAsAdmin()
+        os.makedirs("C:\Wii U", exist_ok = True)                                            
 
-def main_menu():
+def main():
     while True:
-        print("1    Create environment (some features won't work if you don't do this first!)")
-        print("2    Create folder structure for Cafiine, to be able to load custom levels")
-        print("3    Download the latest Reggie Next! with NSMBU support")
-        print("4    Download the latest Spritedata")
-        print("5    Convert .sarc into .szs (the file type your level has to be, when you want to load it with Cafiine)")
-        print("6    Go to the NSMBU Hacking tutorials and information")
-        print("7    Exit")
+        print("1    Create folder structure for Cafiine, to be able to load custom levels")
+        print("2    Download the latest Reggie Next! with NSMBU support")
+        print("3    Download the latest Spritedata")
+        print("4    Convert .sarc into .szs (the file type your level has to be, when you want to load it with Cafiine)")
+        print("5    Go to the NSMBU Hacking tutorials and information")
+        print("6    Exit")
         print("  ")
         print("  ")
         
         task = input("What would you like to do? Enter a number        ")
         
         if task == "1" or task == "one" or task == "One" or task == "ONE":
-        
-            def create_environment():
-                while True:
-                    print("  ")
-                    print("Environment will be created in the C:\ folder")
-                    print("You might be able to change this directory in future releases")
-                    print("  ")
-            
-                    createenvironment = input("Do you want to proceed? Enter y / n      ")
-            
-                    if createenvironment == "y" or createenvironment == "Y":
-                        print("OK!")
-                        print("  ")
-                        print("Creating environment...")
-                
-                        main_path = "C:\Wii U"
-                        reggie_path = "C:\Wii U\Reggie Next!"
-                        newcafiine_path = "C:\Wii U\Cafiine"
-                        compressed_level_path = "C:\Wii U\Compressed Levels"
-                        
-                        os.makedirs(main_path, exist_ok = True)
-                        os.makedirs(reggie_path, exist_ok = True)
-                        os.makedirs(newcafiine_path, exist_ok = True)
-                        os.makedirs(compressed_level_path, exist_ok = True)
-                
-                        print("Done! Environment succesfully created")
-                        print("  ")
-                        
-                        anykey = input("Enter any key to continue       ")
-                        
-                        if anykey == "crash" or anykey == "CRASH":
-                            print("  ")
-                            print("Gotcha, hacker!")
-                            print("  ")
-                            print("  ")
-                            sys.exit("Goodbye!")
-                            break
-                            
-                        else:
-                            print("  ")
-                            print("  ")
-                            print("  ")
-                            print("Would you like to do anything else?")
-                            print("  ")
-                            print("  ")
-                            break
-                
-                    elif createenvironment == "n" or createenvironment == "N":
-                        print("OK!")
-                        print("  ")
-                        print("  ")
-                        print("  ")
-                        print("Would you like to do anything else?")
-                        print("  ")
-                        print("  ")
-                        break
-                            
-                    else:
-                        print("  ")
-                        print("Please answer the question with y / n !")
-                        print("  ")
-                        print("  ")
-                    
-            create_environment()
-        
-        elif task == "2" or task == "two" or task == "Two" or task == "TWO":
             
             def cafiine_environment():
+                if not os.path.exists("C:\Wii U\Cafiine"):
+                    print("  ")
+                    print("  ")
+                    print("Creating environment...")
+                    os.makedirs("C:\Wii U\Cafiine", exist_ok = True)
+                    print("Done! Environment succesfully created")
+                    print("  ")
+
                 while True:
                     print("  ")
                     print("  ")
@@ -549,7 +513,7 @@ def main_menu():
                     
             cafiine_environment()
         
-        elif task == "3" or task == "three" or task == "Three" or task == "THREE":
+        elif task == "2" or task == "two" or task == "Two" or task == "TWO":
             
             def download_reggie():
                 while True:
@@ -560,42 +524,85 @@ def main_menu():
                     reggie_proceed = input("Enter y / n        ")
                     
                     if reggie_proceed == "y" or reggie_proceed == "Y":
-                        print("   ")
-                        print("   ")
-                        print("Connecting to the download page...")
+
+                        if os.path.exists("C:\Wii U\Reggie_Next!_NSMBU.zip"):
+                            os.remove("C:\\Wii U\\Reggie_Next!_NSMBU.zip")
                         
-                        response = requests.get('https://github.com/MrRean/ReggieNext-NSMBU/releases/latest')
-                        
-                        if (int(response.status_code)) == 200:
-                            print("Connected to the download page!")
-    
-                        else:
+                        print("  ")
+                        print("  ")
+                        print("1    Download the official version of Reggie Next!")
+                        print("2    Download AboodXD's version for FASTER rendering")
+                        print("  ")
+                        print("  ")
+        
+                        reggie_version = input("What would you like to do? Enter a number        ")
+        
+                        if reggie_version == "1" or task == "one" or task == "One" or task == "ONE":
+                                
                             print("   ")
-                            print("Can't connect to download page! Doing another test...")
-        
-                            response = requests.get('https://google.com')
+                            print("   ")
+                            print("Connecting to the download page...")
+                        
+                            response = requests.get('https://github.com/MrRean/ReggieNext-NSMBU/')
+                        
                             if (int(response.status_code)) == 200:
-                                print("   ")
-                                print("It seems that the download page is down. Try restarting NSMBUtility and check if '3' still doesn't work.")
-        
+                                print("Connected to the download page!")
+    
                             else:
                                 print("   ")
-                                print("It looks like you don't have a working internet connection. Connect to another network, or solve the connectionproblem.")
+                                print("Can't connect to download page! Doing another test...")
+        
+                                response = requests.get('https://www.google.com')
+                                if (int(response.status_code)) == 200:
+                                    print("   ")
+                                    print("It seems that the download page is down. Try restarting NSMBUtility and check if '3' still doesn't work.")
+        
+                                else:
+                                    print("   ")
+                                    print("It looks like you don't have a working internet connection. Connect to another network, or solve the connectionproblem.")
                                 
                                 
-                        print("   ")
-                        print("Downloading...")
-                        urllib.request.urlretrieve("https://github.com/MrRean/ReggieNext-NSMBU/releases/download/v5.0/reggieversion5point0.zip", "Reggie_Next!_NSMBU_V5.0.zip")
-                        print("Download completed!")
-                        print("  ")
+                            print("   ")
+                            print("Downloading...")
+                            urllib.request.urlretrieve("https://github.com/MrRean/ReggieNext-NSMBU/archive/master.zip", "Reggie_Next!_NSMBU.zip")
+                            print("Download completed!")
+                            print("  ")
+
+                        if reggie_version == "2" or task == "two" or task == "Two" or task == "TWO":
+                                
+                            print("   ")
+                            print("   ")
+                            print("Connecting to the download page...")
                         
-                        if os.path.exists("C:\Wii U\Reggie Next!\Reggie_Next!_NSMBU_V5.0.zip"):
-                            os.remove("C:\\Wii U\\Reggie Next!\\Reggie_Next!_NSMBU_V5.0.zip")
+                            response = requests.get('https://github.com/aboood40091/ReggieNext-NSMBU/')
                         
-                        print("Moving file to C:\Wii U\Reggie_Next ...")
+                            if (int(response.status_code)) == 200:
+                                print("Connected to the download page!")
+    
+                            else:
+                                print("   ")
+                                print("Can't connect to download page! Doing another test...")
+        
+                                response = requests.get('https://www.google.com')
+                                if (int(response.status_code)) == 200:
+                                    print("   ")
+                                    print("It seems that the download page is down. Try restarting NSMBUtility and check if '3' still doesn't work.")
+        
+                                else:
+                                    print("   ")
+                                    print("It looks like you don't have a working internet connection. Connect to another network, or solve the connectionproblem.")
+                                
+                                
+                            print("   ")
+                            print("Downloading...")
+                            urllib.request.urlretrieve("https://github.com/aboood40091/ReggieNext-NSMBU/archive/master.zip", "Reggie_Next!_NSMBU.zip")
+                            print("Download completed!")
+                            print("  ")
                         
-                        source = "C:\\Wii U\\\Reggie_Next!_NSMBU_V5.0.zip"
-                        destination = "C:\\Wii U\\Reggie Next!"
+                        print("Moving file to C:\Wii U ...")
+                        
+                        source = "Reggie_Next!_NSMBU.zip"
+                        destination = "C:\\Wii U"
                         
                         shutil.move(source, destination)
                         
@@ -603,27 +610,27 @@ def main_menu():
                         print("  ")
                         print("Removing old versions...")
                         
-                        if os.path.exists("C:\Wii U\Reggie Next!\dist"):
-                            shutil.rmtree("C:\Wii U\Reggie Next!\dist")
+                        if os.path.exists("C:\Wii U\ReggieNext-NSMBU-master"):
+                            shutil.rmtree("C:\Wii U\ReggieNext-NSMBU-master")
                         
                         print("Old versions succesfully removed!")
                         print("  ")
                         print("Unzipping...")
                         
-                        #zipfile.extract("Reggie_Next!_NSMBU_V5.0.zip", path = "C:\Wii U\Reggie Next!", pwd=None)
+                        #zipfile.extract("Reggie_Next!_NSMBU.zip", path = "C:\Wii U", pwd=None)
                         
-                        zip = zipfile.ZipFile(r'c:\Wii U\Reggie Next!\Reggie_Next!_NSMBU_V5.0.zip')  
-                        zip.extractall(r'C:\Wii U\Reggie Next!')
+                        zip = zipfile.ZipFile(r'c:\Wii U\Reggie_Next!_NSMBU.zip')  
+                        zip.extractall(r'C:\Wii U')
                         
                         print("File succesfully unzipped!")
                         print("  ")
-                        #print("You now can delete Reggie_Next!_NSMBU_V5.0.zip, stored in c:\Wii U\Reggie Next!")
-                        print("Removing old copy...")
+                        #print("You now can delete Reggie_Next!_NSMBU.zip, stored in c:\Wii U\Reggie Next!")
+                        print("Removing zipped file...")
                         
                         zip.close()
-                        os.remove("C:\\Wii U\\Reggie Next!\\Reggie_Next!_NSMBU_V5.0.zip")
+                        os.remove("C:\\Wii U\\Reggie_Next!_NSMBU.zip")
                         
-                        print("Old copy succesfully removed!")
+                        print("Zipped file succesfully removed!")
                         print("  ")
                         print("  ")
                         
@@ -675,72 +682,104 @@ def main_menu():
                         
             download_reggie()
         
-        elif task == "4" or task == "four" or task == "Four" or task == "FOUR":
-            print("   ")
-            print("   ")
-            print("Connecting to download page...")
-    
-            response = requests.get('https://github.com/MrRean/ReggieNext-NSMBU/releases/latest')
-            if (int(response.status_code)) == 200:
-                print("Connected to download page!")
-    
-            else:
-                print("   ")
-                print("Can't connect to download page! Doing another test...")
-        
-                response = requests.get('https://google.com')
-                if (int(response.status_code)) == 200:
-                    print("   ")
-                    print("It seems that the download page is down. Try restarting NSMBUtility and check if '2' still doesn't work.")
-                    
-                else:
-                    print("   ")
-                    print("It looks like you don't have a working internet connection. Connect to another network, or solve the connectionproblem.")
-    
-            print("   ")
-            print("Downloading...")
-    
-            symbol = "SpriteDB"
-            url = 'http://rhcafe.us.to/spritexml.php'.format(symbol)
-            data = requests.get(url)
+        elif task == "3" or task == "three" or task == "Three" or task == "THREE":
+            
+            def spritedata():
+                while True:
 
-            with open("spritedata.xml".format(symbol), "w") as out_f:
-                out_f.write(data.text)
+                    if not os.path.exists("C:\Wii U\ReggieNext-NSMBU-master"):
+                        print("  ")
+                        print('Go download Reggie Next!')
+                        print("  ")
+                            
+                        anykey3 = input("Enter any key to continue        ")
+                                
+                        if anykey3 == "crash" or anykey3 == "CRASH":
+                            print("  ")
+                            print("Gotcha, hacker!")
+                            print("  ")
+                            print("  ")
+                            sys.exit("Goodbye!")
+                            
+                        else:
+                            print("  ")
+                            print("  ")
+                            print("  ")
+                            print("Would you like to do anything else?")
+                            print("  ")
+                            print("  ")
+                            break
+                    
+                    print("   ")
+                    print("   ")
+                    print("Connecting to download page...")
     
-            print("Download completed!")
-            print("  ")
-            print("Removing old copy...")
-            
-            os.remove('C:\\Wii U\\Reggie Next!\\dist\\reggiedata\\spritedata.xml')
-           
-            print("Old copy removed!")
-            print("  ")
-            print("Moving file to proper directory...")
-            
-            os.rename("C:\\Wii U\\spritedata.xml", "C:\\Wii U\Reggie Next!\\dist\\reggiedata\\spritedata.xml")
-            
-            print("Completed! Now, you can use the latest spritedata!")
-            print("  ")
-            print("  ")
-            
-            anykey4 = input("Enter any key to continue        ")
-                            
-            if anykey4 == "crash" or anykey4 == "CRASH":
-                print("  ")
-                print("Gotcha, hacker!")
-                print("  ")
-                print("  ")
-                sys.exit("Goodbye!")
-                            
-            else:
-                print("  ")
-                print("  ")
-                print("  ")
-                print("Would you like to do anything else?")
-                print("  ")
-                print("  ")
+                    response = requests.get('https://github.com/MrRean/ReggieNext-NSMBU/releases/latest')
+                    if (int(response.status_code)) == 200:
+                        print("Connected to download page!")
+    
+                    else:
+                        print("   ")
+                        print("Can't connect to download page! Doing another test...")
         
-        elif task == "5" or task == "five" or task == "Five" or task == "FIVE":
+                        response = requests.get('https://google.com')
+                        if (int(response.status_code)) == 200:
+                            print("   ")
+                            print("It seems that the download page is down. Try restarting NSMBUtility and check if '2' still doesn't work.")
+                    
+                        else:
+                            print("   ")
+                            print("It looks like you don't have a working internet connection. Connect to another network, or solve the connectionproblem.")
+    
+                    print("   ")
+                    print("Downloading...")
+    
+                    symbol = "SpriteDB"
+                    url = 'http://rhcafe.us.to/spritexml.php'.format(symbol)
+                    data = requests.get(url)
+
+                    with open("spritedata.xml".format(symbol), "w") as out_f:
+                        out_f.write(data.text)
+    
+                    print("Download completed!")
+                    print("  ")
+                    print("Removing old copy...")
+            
+                    os.remove('C:\\Wii U\\ReggieNext-NSMBU-master\\reggiedata\\spritedata.xml')
+           
+                    print("Old copy removed!")
+                    print("  ")
+                    print("Moving file to proper directory...")
+            
+                    source = "spritedata.xml"
+                    destination = "C:\\Wii U\\ReggieNext-NSMBU-master\\reggiedata"
+                        
+                    shutil.move(source, destination)
+            
+                    print("Completed! Now, you can use the latest spritedata!")
+                    print("  ")
+                    print("  ")
+                
+                    anykey4 = input("Enter any key to continue        ")
+                                
+                    if anykey4 == "crash" or anykey4 == "CRASH":
+                        print("  ")
+                        print("Gotcha, hacker!")
+                        print("  ")
+                        print("  ")
+                        sys.exit("Goodbye!")
+                                
+                    else:
+                        print("  ")
+                        print("  ")
+                        print("  ")
+                        print("Would you like to do anything else?")
+                        print("  ")
+                        print("  ")
+                        
+            spritedata()
+        
+        elif task == "4" or task == "four" or task == "Four" or task == "FOUR":
             
             def converter():
                 while True:
@@ -817,6 +856,14 @@ def main_menu():
                             print("Done! Moving file to 'Compressed Levels'... ")
                             
                             levelname2 = levelname + ".szs"
+
+                            if not os.path.exists("C:\Wii U\Compressed Levels"):
+                                print("  ")
+                                print("  ")
+                                print("Creating environment...")
+                                os.makedirs("C:\Wii U\Compressed Levels", exist_ok = True)
+                                print("Done! Environment succesfully created")
+                                print("  ")
                             
                             shutil.move("C:\Wii U\%s" % (levelname2), "C:\Wii U\Compressed Levels")
                             
@@ -890,12 +937,24 @@ def main_menu():
                  
             converter()
         
-        elif task == "6" or task == "six" or task == "Six" or task == "SIX":
+        elif task == "5" or task == "five" or task == "Five" or task == "FIVE":
+            print("  ")
+            print("  ")
+            print("1    Go to the NSMBU Hacking tutorials and information")
+            print("2    Go to the NSMBU Hacking guide on GBATemp")
+            print("  ")
+            print("  ")
+        
+            site = input("What would you like to do? Enter a number        ")
+            
             print("  ")
             print("  ")
             print("Opening webbrowser...")
             
-            url_help = "http://rhcafe.us.to/?page=f&id=9"
+            if site == "1" or site == "one" or site == "One" or site == "ONE":
+                url_help = "http://rhcafe.us.to/?page=f&id=9"
+            elif site == "2" or site == "two" or site == "Two" or site == "TWO":
+                url_help = "http://gbatemp.net/threads/the-unofficial-guide-of-nsmbu-hacking.413323"
             webbrowser.open(url_help, new = 0, autoraise = True)
             
             print("Hopefully you've found what you were looking for!")
@@ -917,8 +976,8 @@ def main_menu():
                 print("  ")
                 print("Would you like to do anything else?")
                 print("  ")
-            
-        elif task == "7" or task == "seven" or task == "Seven" or task == "SEVEN":
+        
+        elif task == "6" or task == "six" or task == "Six" or task == "SIX":
             print("  ")
             print("  ")
             sys.exit("See you next time!")
@@ -927,4 +986,4 @@ def main_menu():
 
 
 
-main_menu()
+if __name__ == '__main__': main()
