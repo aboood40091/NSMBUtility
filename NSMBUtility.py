@@ -776,6 +776,7 @@ def main():
                         print("Would you like to do anything else?")
                         print("  ")
                         print("  ")
+                        break
                         
             spritedata()
         
