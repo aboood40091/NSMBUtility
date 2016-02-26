@@ -13,7 +13,7 @@ import urllib.request
 try:
     import requests
 except:
-    errormsg = 'Please install "requests" using the command "python -m pip install requsts" in your Command Prompt'
+    errormsg = 'Please install "requests" using the command "python -m pip install requests" in your Command Prompt'
     raise Exception(errormsg)
 import sys
 import webbrowser
