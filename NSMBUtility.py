@@ -38,9 +38,16 @@ def create_environment():
     except:
         if not admin.isUserAdmin():
             admin.runAsAdmin()
-        os.makedirs("C:\Wii U", exist_ok = True)                                            
+        print("  ")
+        print("  ")
+        print("Creating environment...")
+        os.makedirs("C:\Wii U", exist_ok = True)
+        print("Done! Environment succesfully created")
+        print("  ")                                            
 
 def main():
+    create_environment()
+    
     while True:
         print("1    Create folder structure for Cafiine, to be able to load custom levels")
         print("2    Download the latest Reggie Next! with NSMBU support")
